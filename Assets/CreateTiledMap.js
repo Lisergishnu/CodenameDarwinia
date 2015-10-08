@@ -15,9 +15,9 @@ function Start () {
 	GetComponent.<MeshFilter>().mesh = mesh;
 
 	var newVertices : Vector3[] = new Vector3[(width+1)*(height+1)];
-	var newUV : Vector2[];
 	var newTriangles : int[] = new int[width * height * 6];
-
+	var newUV : Vector2[] = new Vector2[newVertices.Length];
+	
 	Random.seed = seed;
 	var k : int = 0;
 	var ti : int = 0;
@@ -26,13 +26,15 @@ function Start () {
 	{
 		for (var i = 0; i <= width; i++)
 		{
-			var r = Mathf.PerlinNoise(i*granularity,j*granularity);
+			var r = Mathf.PerlinNoise(i*granularity,j*granularity)*2;
 			var position = new Vector3(i,r,j);
 			newVertices[k] = position;
+			newUV[k] = new Vector2(i,j);
 			k++;
 		}
 	}
 	mesh.vertices = newVertices;
+	mesh.uv = newUV;
 	
 	for (j = 0; j < height ; j++)
 	{
@@ -49,8 +51,8 @@ function Start () {
 	}
 	
 	mesh.triangles = newTriangles;
-	mesh.RecalculateNormals();
-
+	mesh.RecalculateNormals();	
+	
 }
 
 function Update () {

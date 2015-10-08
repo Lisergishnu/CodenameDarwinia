@@ -6,6 +6,7 @@ var seed : int;
 var granularity : float;
 var heightOffset : float;
 var mesh : Mesh;
+var heightMultiplier : float;
 
 
 function Start () {
@@ -26,8 +27,11 @@ function Start () {
 	{
 		for (var i = 0; i <= width; i++)
 		{
-			var r = Mathf.PerlinNoise(i*granularity,j*granularity)*2;
-			var position = new Vector3(i,r,j);
+			var r = Mathf.PerlinNoise(i*granularity,j*granularity);
+			if (r < heightOffset) {
+				r = 0;
+			}
+			var position = new Vector3(i,r*heightMultiplier,j);
 			newVertices[k] = position;
 			newUV[k] = new Vector2(i,j);
 			k++;
@@ -51,7 +55,8 @@ function Start () {
 	}
 	
 	mesh.triangles = newTriangles;
-	mesh.RecalculateNormals();	
+	mesh.RecalculateNormals();
+	mesh.RecalculateBounds();	
 	
 }
 

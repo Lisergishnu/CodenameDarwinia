@@ -58,7 +58,6 @@ function Start () {
 	mesh.RecalculateNormals();
 	mesh.RecalculateBounds();	
 	
-	GetComponent.<MeshCollider>().mesh = mesh;
 }
 
 function Update () {

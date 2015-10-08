@@ -13,7 +13,7 @@ GameObject:
   - 23: {fileID: 2300000}
   - 114: {fileID: 11400000}
   m_Layer: 0
-  m_Name: Initializator
+  m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,7 +26,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.09822297, y: .565878153, z: -.810903072}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -57,7 +57,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 0}
 --- !u!65 &6500000
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -81,16 +81,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b4910191506745bb8728d19b858f6e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grassTile: {fileID: 100000, guid: ee64ec7d6540c46379799fb220c132bc, type: 2}
-  dirtTile: {fileID: 100000, guid: 7b8f51419e9f44f019ac204953b5f7e1, type: 2}
-  width: 20
-  height: 20
-  seed: 1003234
-  xOffset: 10
-  yOffset: 0
-  zOffset: 10
-  granularity: 0
-  heightOffset: 0
+  width: 75
+  height: 75
+  seed: 0
+  xOffset: 1
+  yOffset: 3
+  zOffset: 1
+  granularity: .100000001
+  heightOffset: .600000024
+  mesh: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

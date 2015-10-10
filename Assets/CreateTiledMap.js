@@ -1,5 +1,7 @@
 ﻿#pragma strict
 
+import AstarPath;
+
 var width : int;
 var height : int;
 var seed : int;
@@ -57,6 +59,9 @@ function Start () {
 	mesh.triangles = newTriangles;
 	mesh.RecalculateNormals();
 	mesh.RecalculateBounds();	
+	
+	GetComponent.<MeshCollider>().sharedMesh = mesh;
+	AstarPath.active.Scan();
 	
 }
 

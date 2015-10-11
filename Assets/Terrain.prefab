@@ -88,10 +88,11 @@ MonoBehaviour:
   width: 75
   height: 75
   seed: 0
-  granularity: .100000001
-  heightOffset: .25
+  scale: 5
+  heightOffset: .300000012
   mesh: {fileID: 0}
-  heightMultiplier: 2
+  heightMultiplier: 5
+  mapHeightData: []
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

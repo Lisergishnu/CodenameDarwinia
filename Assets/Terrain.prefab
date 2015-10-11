@@ -85,11 +85,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b4910191506745bb8728d19b858f6e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 75
-  height: 75
+  width: 150
+  height: 150
   seed: 0
-  scale: 5
-  heightOffset: .300000012
+  scale: 1
+  heightOffset: .25
   mesh: {fileID: 0}
   heightMultiplier: 5
   mapHeightData: []

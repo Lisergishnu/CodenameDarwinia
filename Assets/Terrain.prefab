@@ -41,7 +41,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 987794a8a189d48ba974b9fb03ffb1a3, type: 2}
+  - {fileID: 2100000, guid: 760a16f0ad0714deb9bfc9c76f4032d4, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -88,7 +88,7 @@ MonoBehaviour:
   width: 150
   height: 150
   seed: 0
-  scale: 1
+  scale: 10
   heightOffset: .25
   mesh: {fileID: 0}
   heightMultiplier: 5

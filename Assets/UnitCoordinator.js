@@ -17,14 +17,14 @@ function Start () {
 	selectedUnits.Clear();
 }
 
-function screenToIsometric () {
+function ScreenToIsometric () {
 	var ray : Ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 	var hit: RaycastHit;
 	if (Physics.Raycast(ray, hit, Mathf.Infinity)) {
 		return hit.point;
 	}
 	Debug.LogError("Didn't hit ground!");
-  	return Vector3(0,0,0);
+  	return null;
 }
 
 function SelectUnitsUnderRect(rect:Rect) : boolean {
@@ -81,5 +81,16 @@ function Update () {
 		var testWidth = Mathf.Abs(startingPoint.x - endPoint.x);
 		var testHeight = Mathf.Abs(startingPoint.y - endPoint.y);
 		SelectUnitsUnderRect(Rect(testX,testY,testWidth,testHeight));
+	}
+	
+	if (Input.GetButton("Right Click")) {
+		for (var i in selectedUnits) {
+			var n = i.GetComponent.<BasicPathfindingAI>();
+			var mp : Vector3 = ScreenToIsometric();
+			if (mp != null) {
+				Debug.Log("Issuing order...");
+				n.IssueMovementToMapPoint(mp);
+			}
+		}	
 	}
 }

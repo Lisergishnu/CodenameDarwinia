@@ -135,6 +135,10 @@ MonoBehaviour:
   speed: 25
   nextWaypointDistance: 3
   seeker: {fileID: 0}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  gravity: 9.80000019
 --- !u!143 &14384924
 CharacterController:
   m_ObjectHideFlags: 1
@@ -207,6 +211,30 @@ Prefab:
       propertyPath: offShader
       value: 
       objectReference: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 0}
+      propertyPath: groundLayer.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Constraints
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 154648}

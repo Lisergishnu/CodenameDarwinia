@@ -6,12 +6,24 @@ var path : Pathfinding.Path;
 var speed : float;
 var nextWaypointDistance : float = 3;
 var seeker : Seeker;
+var groundLayer : LayerMask;
+var gravity : float = 9.8;
+
 private var currentWaypoint : int;
 
 function Start () {
 	seeker = GetComponent.<Seeker>();
 	controller = GetComponent.<CharacterController>();
-	seeker.StartPath(transform.position, targetPosition, OnPathComplete);
+}
+
+function IssueMovementToMapPoint(p:Vector3) : boolean {
+	p.y = 200;
+	var hit : RaycastHit;
+	if (Physics.Raycast(p, Vector3.down, hit, Mathf.Infinity, groundLayer)) {
+		seeker.StartPath(transform.position, hit.point, OnPathComplete);
+		return true;
+	}
+	return false;
 }
 
 function OnPathComplete(p:Pathfinding.Path) {
@@ -24,6 +36,9 @@ function OnPathComplete(p:Pathfinding.Path) {
 }
 
 function Update () {
+	var g : Vector3 = Vector3.zero;
+	g.y -= gravity * Time.deltaTime;
+	controller.Move(g);
 if (path == null) {
             //We have no path to move after yet
             return;
@@ -41,5 +56,5 @@ if (path == null) {
         if (Vector3.Distance (transform.position,path.vectorPath[currentWaypoint]) < nextWaypointDistance) {
             currentWaypoint++;
             return;
-        }
+        }   
 }

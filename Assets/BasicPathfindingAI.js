@@ -29,7 +29,7 @@ if (path == null) {
             return;
         }
         if (currentWaypoint >= path.vectorPath.Count) {
-            Debug.Log ("End Of Path Reached");
+            //Debug.Log ("End Of Path Reached");
             return;
         }
         //Direction to the next waypoint

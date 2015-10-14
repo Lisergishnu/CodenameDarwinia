@@ -13,7 +13,8 @@ function Update () {
 	translationXZ *= Time.deltaTime;
 	translationY *= Time.deltaTime;
 	
-	var dirXZ =  new Vector3(1,0,-1);
+	var dirXZ : Vector3 =  new Vector3(1,0,0);
+	dirXZ.Normalize();
 	dirXZ *= translationXZ;
 	
 	transform.Translate(dirXZ.x, translationY, dirXZ.z);

@@ -39,7 +39,7 @@ function Update () {
 	var g : Vector3 = Vector3.zero;
 	g.y -= gravity * Time.deltaTime;
 	controller.Move(g);
-if (path == null) {
+	if (path == null) {
             //We have no path to move after yet
             return;
         }

@@ -10,6 +10,7 @@ private var draggingBox : boolean = false;
 
 private var selectedUnits : List.<GameObject> = new List.<GameObject>();
 var groundLayer : LayerMask;
+var unitLayer : LayerMask;
 
 function Start () {
 	selectionBox = GameObject.Find("SelectionBox");
@@ -31,7 +32,6 @@ function SelectUnitsUnderRect(rect:Rect) : boolean {
 	var foundAnyone = false;	
 	var ggUnits = GameObject.FindGameObjectsWithTag("PlayerUnit");
 	for (var u : GameObject in ggUnits) {
-		Debug.Log("Rect: "+rect+". Unit: "+ u.transform.position);
 		if (rect.Contains(Camera.main.WorldToScreenPoint(u.transform.position))) {
 			var n = u.GetComponent.<Selectable>();
 			n.OnSelection();
@@ -40,6 +40,21 @@ function SelectUnitsUnderRect(rect:Rect) : boolean {
 		}
 	}
 	return foundAnyone;
+}
+
+function SelectUnitUnderMousePoint() : boolean {
+	var ray : Ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+	var hit : RaycastHit;
+	if (Physics.Raycast(ray,hit,Mathf.Infinity,unitLayer)) {
+		var go : GameObject = hit.collider.gameObject;
+		if (go.GetComponent(Selectable)) {
+			var n = go.GetComponent.<Selectable>();
+			n.OnSelection();
+			selectedUnits.Add(go);
+			return true;
+		}
+	}
+	return false;
 }
 
 function ClearSelectedUnits() {
@@ -56,7 +71,8 @@ function Update () {
 			ClearSelectedUnits();
 			draggingBox = true;
 			startingPoint = Input.mousePosition;
-			selectionBox.transform.position = startingPoint;			
+			selectionBox.transform.position = startingPoint;
+			SelectUnitUnderMousePoint();			
 		}
 		var rt = selectionBox.transform as RectTransform;
 		var sd = Input.mousePosition - startingPoint;
@@ -67,7 +83,7 @@ function Update () {
 		rt.sizeDelta = Vector2(
 			(sd.x < 0) ? -sd.x : sd.x,
 			(sd.y < 0) ? -sd.y : sd.y);
-
+			
 	} else if (draggingBox) {
 		draggingBox = false;
 		var endPoint : Vector2 = Input.mousePosition;

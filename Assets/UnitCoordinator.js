@@ -88,7 +88,6 @@ function Update () {
 			var n = i.GetComponent.<BasicPathfindingAI>();
 			var mp : Vector3 = ScreenToIsometric();
 			if (mp != null) {
-				Debug.Log("Issuing order...");
 				n.IssueMovementToMapPoint(mp);
 			}
 		}	

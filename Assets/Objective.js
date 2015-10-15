@@ -9,8 +9,7 @@ function Objective(name:String, pos:Vector2) {
 		this.transform.position.y += 1;
 	} else {
 	Debug.LogError("Couldn't position objective!");
-	}
-	
+	}	
 }
 
 function Start () {

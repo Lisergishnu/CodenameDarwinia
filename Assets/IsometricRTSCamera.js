@@ -3,6 +3,8 @@
 var speed : float;
 var zoomSpeed : float;
 function Start () {
+	// Show starting area
+	var sA : GameObject = GameObject.Find("Starting Area");
 	
 }
 

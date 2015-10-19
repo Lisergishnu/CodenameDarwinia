@@ -129,10 +129,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fae0c6a8bd0644373ae8c103d75f5e95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  awarenessRadius: 20
-  maxDistanceFromObjective: 30
-  currentObjective: {fileID: 0}
-  targetUnit: {fileID: 0}
+  currentState:
+    entity: {fileID: 0}
+  initialPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &11473164
 MonoBehaviour:
   m_ObjectHideFlags: 1

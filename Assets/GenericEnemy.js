@@ -4,38 +4,35 @@ import BasicPathfindingAI;
 
 public class GenericEnemy extends MonoBehaviour {
 
-var awarenessRadius : float = 0.5;
-var targetUnit : GameObject = null;
-
-private var pfai : BasicPathfindingAI;
-
-function Start () {
-	pfai = GetComponent.<BasicPathfindingAI>();
-	InvokeRepeating("UpdatePathing",0,5);
-}
-
-function OnEnemySpotted(enemy: GameObject) {
-	targetUnit = enemy;
+	var currentState : EnemyAIState;
+	var initialPosition : Vector3;
+	private var isReturningHome : boolean = false;
+	private var pfai : BasicPathfindingAI;
 	
-}
-
-function Update () {
-	if (targetUnit == null) {
-	var pUs = GameObject.FindGameObjectsWithTag("PlayerUnit");
-	for (var pU : GameObject in pUs) {
-		if (Vector3.Distance(pU.transform.position, this.transform.position) < awarenessRadius) {
-			Debug.Log("GenericEnemy: Enemy spotted!");
-			OnEnemySpotted(pU);
-			break;
-			}
+	function Start () {
+		pfai = GetComponent.<BasicPathfindingAI>();
+		initialPosition = transform.position;
+		ChangeState(IdleAIState(this));
+	}
+	
+	function Update () {
+		currentState.Update();
+	}
+	
+	function Fire() {
+		Debug.Log("Firing mah lazor");
+	}
+	
+	function MoveTo(point: Vector3) {
+		pfai.IssueMovementToMapPoint(point);
+	}
+	
+	function ChangeState(newState : EnemyAIState) {
+		if (currentState) {
+			this.currentState.OnStateLeave();
 		}
+		currentState = newState;
+		currentState.OnStateEnter();
 	}
-}
-
-function UpdatePathing() {
-	if (targetUnit) {
-		pfai.IssueMovementToMapPoint(targetUnit.transform.position);
-	}
-}
 
 }

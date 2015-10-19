@@ -1,6 +1,8 @@
 ﻿#pragma strict
 
-class Wuidobrian {
+class Wuidobrian extends MonoBehaviour {
+	var health : float;
+	
 	
 }
 

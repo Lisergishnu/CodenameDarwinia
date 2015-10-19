@@ -130,6 +130,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   awarenessRadius: 20
+  maxDistanceFromObjective: 30
+  currentObjective: {fileID: 0}
   targetUnit: {fileID: 0}
 --- !u!114 &11473164
 MonoBehaviour:
@@ -273,6 +275,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: awarenessRadius
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: maxDistanceFromObjective
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

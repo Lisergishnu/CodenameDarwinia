@@ -8,6 +8,7 @@ TagManager:
   - EnemyUnit
   - NeutralUnit
   - Objective
+  - Bullet
   layers:
   - Default
   - TransparentFX

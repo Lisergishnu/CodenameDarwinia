@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drawGizmos: 1
-  detailedGizmos: 0
+  detailedGizmos: 1
   startEndModifier:
     priority: 1
     addPoints: 0
@@ -133,7 +133,6 @@ MonoBehaviour:
   width: .0299999993
   offMaterial: {fileID: 2100000, guid: 4e668a987f64045c78b4856beaa21d6d, type: 2}
   onMaterial: {fileID: 2100000, guid: 9cfd233152494455eb3ff6a3e84aa79d, type: 2}
-  lineSegment: {fileID: 131112, guid: 6fc934bc170e04009a575baa0431a8db, type: 2}
 --- !u!114 &11473164
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -297,6 +296,10 @@ Prefab:
       propertyPath: lineSegment
       value: 
       objectReference: {fileID: 131112, guid: 6fc934bc170e04009a575baa0431a8db, type: 2}
+    - target: {fileID: 0}
+      propertyPath: detailedGizmos
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 154648}

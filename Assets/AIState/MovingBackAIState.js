@@ -22,7 +22,7 @@ public class MovingBackAIState extends EnemyAIState {
 		v1.y = 0;
 		var v2 : Vector3 = entity.initialPosition;
 		v2.y = 0;
-		Debug.Log(Vector3.Distance(v1,v2));
+		//Debug.Log(Vector3.Distance(v1,v2));
 		if (Vector3.Distance(v1,v2) < 3) {
 			Debug.Log("Returned home.");
 			entity.ChangeState(IdleAIState(entity));

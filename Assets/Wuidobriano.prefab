@@ -16,6 +16,7 @@ GameObject:
   - 114: {fileID: 11473164}
   - 114: {fileID: 11455050}
   - 114: {fileID: 11421088}
+  - 114: {fileID: 11497068}
   m_Layer: 10
   m_Name: Wuidobriano
   m_TagString: PlayerUnit
@@ -152,6 +153,18 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   gravity: 9.80000019
+--- !u!114 &11497068
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 154648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b67ac55515154c9a9f2979eecff8e4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
 --- !u!143 &14384924
 CharacterController:
   m_ObjectHideFlags: 1

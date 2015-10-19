@@ -10,7 +10,6 @@ public class IdleAIState extends EnemyAIState {
 	}
 	
 	function ProximityCheck() {
-		Debug.Log("Starting proximity check");
 		if (!enemyFound) {
 			var enemies : GameObject[] = GameObject.FindGameObjectsWithTag("PlayerUnit");
 			for (var e : GameObject in enemies) {
@@ -27,7 +26,7 @@ public class IdleAIState extends EnemyAIState {
 	}
 	
 	function Update() {
-		if (TimerExpired(0.1f)) {
+		if (TimerExpired(0.5f)) {
 			ProximityCheck();
 		}
 	}

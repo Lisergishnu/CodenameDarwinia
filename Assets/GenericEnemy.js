@@ -2,6 +2,8 @@
 
 import BasicPathfindingAI;
 
+var bullet : GameObject;
+
 public class GenericEnemy extends MonoBehaviour {
 
 	var currentState : EnemyAIState;
@@ -19,8 +21,9 @@ public class GenericEnemy extends MonoBehaviour {
 		currentState.Update();
 	}
 	
-	function Fire() {
-		Debug.Log("Firing mah lazor");
+	function Fire(target: GameObject) {
+		var b : GameObject = Instantiate(bullet,transform.position,Quaternion.identity);
+		b.GetComponent.<BulletMover>().currentTarget = target;
 	}
 	
 	function MoveTo(point: Vector3) {

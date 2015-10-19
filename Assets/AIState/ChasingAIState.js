@@ -41,6 +41,7 @@ public class ChasingAIState extends EnemyAIState {
 				entity.ChangeState(IdleAIState(entity));
 				return;
 			}
+			
 			if (!firing && Vector3.Distance(this.entity.gameObject.transform.position, currentEnemy.transform.position)
 				< minAttackDistance) {
 					this.entity.Fire(currentEnemy);

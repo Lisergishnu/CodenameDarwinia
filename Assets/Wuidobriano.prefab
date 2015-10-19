@@ -165,6 +165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  bullet: {fileID: 102162, guid: 41ca4de6c6f1c451b9c877f81b86a2ff, type: 2}
 --- !u!143 &14384924
 CharacterController:
   m_ObjectHideFlags: 1
@@ -313,6 +314,10 @@ Prefab:
       propertyPath: detailedGizmos
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 102162, guid: 41ca4de6c6f1c451b9c877f81b86a2ff, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 154648}

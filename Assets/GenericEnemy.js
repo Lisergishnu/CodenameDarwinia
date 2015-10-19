@@ -8,6 +8,7 @@ public class GenericEnemy extends MonoBehaviour {
 
 	var currentState : EnemyAIState;
 	var initialPosition : Vector3;
+	var health : int = 300;
 	private var isReturningHome : boolean = false;
 	private var pfai : BasicPathfindingAI;
 	
@@ -36,6 +37,13 @@ public class GenericEnemy extends MonoBehaviour {
 		}
 		currentState = newState;
 		currentState.OnStateEnter();
+	}
+
+	function OnBulletHit() {
+		health -= 5;
+		if (health <= 0) {
+			Destroy(this.gameObject, 0.1f);
+		}
 	}
 
 }

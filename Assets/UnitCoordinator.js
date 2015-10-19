@@ -59,6 +59,8 @@ function SelectUnitUnderMousePoint() : boolean {
 
 function ClearSelectedUnits() {
 	for (var i in selectedUnits) {
+		if (!i)
+			continue;
 		var n = i.GetComponent.<Selectable>();
 		n.OnUnselection();
 	}
@@ -101,6 +103,9 @@ function Update () {
 	
 	if (Input.GetButton("Right Click")) {
 		for (var i in selectedUnits) {
+			//Maybe one of the units went dead
+			if (!i)
+				continue;
 			var n = i.GetComponent.<BasicPathfindingAI>();
 			var mp : Vector3 = ScreenToIsometric();
 			if (mp != null) {

@@ -18,6 +18,10 @@ function Start () {
 	selectedUnits.Clear();
 }
 
+function GetSelectedUnits() : GameObject[] {
+	return selectedUnits.ToArray();
+}
+
 function ScreenToIsometric () {
 	var ray : Ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 	var hit: RaycastHit;
@@ -58,13 +62,25 @@ function SelectUnitUnderMousePoint() : boolean {
 }
 
 function ClearSelectedUnits() {
-	for (var i in selectedUnits) {
+	for (var i in GetSelectedUnits()) {
 		if (!i)
 			continue;
 		var n = i.GetComponent.<Selectable>();
 		n.OnUnselection();
 	}
 	selectedUnits.Clear();
+}
+
+function GetEnemyUnitUnderMouse() : GameObject {
+	var ray : Ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+	var hit : RaycastHit;
+	if (Physics.Raycast(ray,hit,Mathf.Infinity,unitLayer)) {
+		var go : GameObject = hit.collider.gameObject;
+		if (go.tag == "EnemyUnit") {
+			return go;
+		}
+	}
+	return null;
 }
 
 function Update () {
@@ -102,15 +118,29 @@ function Update () {
 	}
 	
 	if (Input.GetButton("Right Click")) {
-		for (var i in selectedUnits) {
-			//Maybe one of the units went dead
-			if (!i)
-				continue;
-			var n = i.GetComponent.<BasicPathfindingAI>();
-			var mp : Vector3 = ScreenToIsometric();
-			if (mp != null) {
-				n.IssueMovementToMapPoint(mp);
+		var gsu : GameObject[] = GetSelectedUnits();
+		if (gsu.Length > 0) {
+			var enemy : GameObject = GetEnemyUnitUnderMouse();
+			if (enemy) {
+				//issue order
+				for (var i in gsu) {
+					if (!i)
+						continue;
+					var w = i.GetComponent.<Wuidobrian>();
+					w.IssueAttackOrderTo(enemy);
+				}
+			} else {
+				for (var i in gsu) {
+					//Maybe one of the units went dead
+					if (!i)
+						continue;
+					var n = i.GetComponent.<BasicPathfindingAI>();
+					var mp : Vector3 = ScreenToIsometric();
+					if (mp != null) {
+						n.IssueMovementToMapPoint(mp);
+					}
+				}	
 			}
-		}	
+		} 		
 	}
 }

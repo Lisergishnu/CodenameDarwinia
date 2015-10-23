@@ -10,9 +10,11 @@ function Start () {
 }
 
 function Update () {
-	if (!currentTarget)
-		Debug.LogError("Bullet instancied without target!!");
-		
+	if (!currentTarget) {
+		Destroy(this.gameObject);
+		return;		
+	}
+			
 	t += Time.deltaTime*speed;
 	if (t >= 1) {
 		currentTarget.SendMessage("OnBulletHit");

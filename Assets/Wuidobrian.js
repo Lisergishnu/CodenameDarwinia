@@ -1,13 +1,21 @@
 ﻿#pragma strict
 
+@script RequireComponent(BasicPathfindingAI)
+
 class Wuidobrian extends MonoBehaviour {
 	var health : float = 100;
 	var bullet : GameObject;
 	
 	var hasFired : boolean = false;
-	var firingCD : float = 0;
 	
 	var currentTarget : GameObject;
+	var pF : BasicPathfindingAI;
+	var firingCooldown : float = 1f;
+	var firingRange : float = 10f;
+	
+	function Start() {
+		pF = GetComponent.<BasicPathfindingAI>();
+	}
 	
 	function OnBulletHit() {
 		Debug.Log("Got Hit!!");
@@ -30,12 +38,36 @@ class Wuidobrian extends MonoBehaviour {
 	}
 	
 	function Update() {
-		if (hasFired) {
-			firingCD += Time.deltaTime;
-			if (firingCD >= 2.0f) {
-				hasFired = false;
-				firingCD = 0;
-			}
+	 
+	}
+	
+	function ClearOrders() {
+		StopCoroutine("UpdatePathingToEnemy");
+		StopCoroutine("UpdateFiringToEnemy");
+		LockTarget(null);
+	}
+	
+	function IssueAttackOrderTo(enemy:GameObject) {
+		Debug.Log("Attacking " + enemy);
+		
+		LockTarget(enemy);
+		UpdatePathingToEnemy();
+		UpdateFiringToEnemy();		
+	}
+	
+	function UpdateFiringToEnemy() /* If any */ {
+		while (currentTarget) {
+			if (Vector3.Distance(this.transform.position, currentTarget.transform.position) < firingRange)
+				Fire(currentTarget);
+			yield WaitForSeconds(firingCooldown);
+			hasFired = false;
+		}
+	}
+	
+	function UpdatePathingToEnemy() /* If any */ {
+		while (currentTarget) {
+			pF.IssueMovementToMapPoint(currentTarget.transform.position);
+			yield WaitForSeconds(1f);
 		}
 	}
 	

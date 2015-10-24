@@ -134,10 +134,10 @@ function Update () {
 					//Maybe one of the units went dead
 					if (!i)
 						continue;
-					var n = i.GetComponent.<BasicPathfindingAI>();
 					var mp : Vector3 = ScreenToIsometric();
+					w = i.GetComponent.<Wuidobrian>();
 					if (mp != null) {
-						n.IssueMovementToMapPoint(mp);
+						w.IssueMoveOrderTo(mp);
 					}
 				}	
 			}

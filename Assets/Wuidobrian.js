@@ -47,9 +47,13 @@ class Wuidobrian extends MonoBehaviour {
 		LockTarget(null);
 	}
 	
+	function IssueMoveOrderTo(point: Vector3) {
+		ClearOrders();
+		pF.IssueMovementToMapPoint(point);
+	}
+	
 	function IssueAttackOrderTo(enemy:GameObject) {
-		Debug.Log("Attacking " + enemy);
-		
+		ClearOrders();
 		LockTarget(enemy);
 		UpdatePathingToEnemy();
 		UpdateFiringToEnemy();		

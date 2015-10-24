@@ -7,6 +7,7 @@ class Wuidobrian extends MonoBehaviour {
 	var bullet : GameObject;
 	
 	var hasFired : boolean = false;
+	var melee : boolean = false;
 	
 	var currentTarget : GameObject;
 	var pF : BasicPathfindingAI;
@@ -15,6 +16,8 @@ class Wuidobrian extends MonoBehaviour {
 	
 	function Start() {
 		pF = GetComponent.<BasicPathfindingAI>();
+		if (melee)
+			firingRange = 2f;
 	}
 	
 	function OnBulletHit() {
@@ -31,14 +34,17 @@ class Wuidobrian extends MonoBehaviour {
 	
 	function Fire(target: GameObject) {
 		if (!hasFired) {
-			var b : GameObject = Instantiate(bullet,transform.position,Quaternion.identity);
-			b.GetComponent.<BulletMover>().currentTarget = target;
+			if (!melee) {
+				var b : GameObject = Instantiate(bullet,transform.position,Quaternion.identity);
+				b.GetComponent.<BulletMover>().currentTarget = target;
+			} else {
+				target.SendMessage("OnBulletHit");
+			}
 			hasFired = true;
 		}
 	}
 	
 	function Update() {
-	 
 	}
 	
 	function ClearOrders() {
@@ -71,7 +77,7 @@ class Wuidobrian extends MonoBehaviour {
 	function UpdatePathingToEnemy() /* If any */ {
 		while (currentTarget) {
 			pF.IssueMovementToMapPoint(currentTarget.transform.position);
-			yield WaitForSeconds(1f);
+			yield WaitForSeconds(.5f);
 		}
 	}
 	

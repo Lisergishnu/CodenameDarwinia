@@ -210,7 +210,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 458642, guid: 56095eaff1ca842fc91703d368249b03, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 3.80599999
+      value: 5.18100023
       objectReference: {fileID: 0}
     - target: {fileID: 458642, guid: 56095eaff1ca842fc91703d368249b03, type: 2}
       propertyPath: m_LocalPosition.z
@@ -234,7 +234,27 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 458642, guid: 56095eaff1ca842fc91703d368249b03, type: 2}
       propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 11439110, guid: 56095eaff1ca842fc91703d368249b03, type: 2}
+      propertyPath: startEndModifier.addPoints
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11439110, guid: 56095eaff1ca842fc91703d368249b03, type: 2}
+      propertyPath: startEndModifier.useGraphRaycasting
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11439110, guid: 56095eaff1ca842fc91703d368249b03, type: 2}
+      propertyPath: startEndModifier.useRaycasting
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11439110, guid: 56095eaff1ca842fc91703d368249b03, type: 2}
+      propertyPath: startEndModifier.exactEndPoint
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11439110, guid: 56095eaff1ca842fc91703d368249b03, type: 2}
+      propertyPath: startEndModifier.exactStartPoint
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 56095eaff1ca842fc91703d368249b03, type: 2}
@@ -870,6 +890,18 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 458642, guid: a3d32efed2feb43bf993a94a4e9d9898, type: 2}
       propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11439110, guid: a3d32efed2feb43bf993a94a4e9d9898, type: 2}
+      propertyPath: startEndModifier.priority
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11439110, guid: a3d32efed2feb43bf993a94a4e9d9898, type: 2}
+      propertyPath: startEndModifier.addPoints
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11439110, guid: a3d32efed2feb43bf993a94a4e9d9898, type: 2}
+      propertyPath: startEndModifier.exactEndPoint
       value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []

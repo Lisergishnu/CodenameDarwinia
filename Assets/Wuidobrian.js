@@ -1,13 +1,24 @@
 ﻿#pragma strict
 
+@script RequireComponent(BasicPathfindingAI)
+
 class Wuidobrian extends MonoBehaviour {
 	var health : float = 100;
 	var bullet : GameObject;
 	
 	var hasFired : boolean = false;
-	var firingCD : float = 0;
+	var melee : boolean = false;
 	
 	var currentTarget : GameObject;
+	var pF : BasicPathfindingAI;
+	var firingCooldown : float = 1f;
+	var firingRange : float = 10f;
+	
+	function Start() {
+		pF = GetComponent.<BasicPathfindingAI>();
+		if (melee)
+			firingRange = 2f;
+	}
 	
 	function OnBulletHit() {
 		Debug.Log("Got Hit!!");
@@ -23,19 +34,50 @@ class Wuidobrian extends MonoBehaviour {
 	
 	function Fire(target: GameObject) {
 		if (!hasFired) {
-			var b : GameObject = Instantiate(bullet,transform.position,Quaternion.identity);
-			b.GetComponent.<BulletMover>().currentTarget = target;
+			if (!melee) {
+				var b : GameObject = Instantiate(bullet,transform.position,Quaternion.identity);
+				b.GetComponent.<BulletMover>().currentTarget = target;
+			} else {
+				target.SendMessage("OnBulletHit");
+			}
 			hasFired = true;
 		}
 	}
 	
 	function Update() {
-		if (hasFired) {
-			firingCD += Time.deltaTime;
-			if (firingCD >= 2.0f) {
-				hasFired = false;
-				firingCD = 0;
-			}
+	}
+	
+	function ClearOrders() {
+		StopCoroutine("UpdatePathingToEnemy");
+		StopCoroutine("UpdateFiringToEnemy");
+		LockTarget(null);
+	}
+	
+	function IssueMoveOrderTo(point: Vector3) {
+		ClearOrders();
+		pF.IssueMovementToMapPoint(point);
+	}
+	
+	function IssueAttackOrderTo(enemy:GameObject) {
+		ClearOrders();
+		LockTarget(enemy);
+		UpdatePathingToEnemy();
+		UpdateFiringToEnemy();		
+	}
+	
+	function UpdateFiringToEnemy() /* If any */ {
+		while (currentTarget) {
+			if (Vector3.Distance(this.transform.position, currentTarget.transform.position) < firingRange)
+				Fire(currentTarget);
+			yield WaitForSeconds(firingCooldown);
+			hasFired = false;
+		}
+	}
+	
+	function UpdatePathingToEnemy() /* If any */ {
+		while (currentTarget) {
+			pF.IssueMovementToMapPoint(currentTarget.transform.position);
+			yield WaitForSeconds(.5f);
 		}
 	}
 	

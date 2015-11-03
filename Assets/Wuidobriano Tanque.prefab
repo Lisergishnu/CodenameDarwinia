@@ -25,6 +25,35 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &198364
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 456024}
+  - 120: {fileID: 12074092}
+  - 114: {fileID: 11433504}
+  m_Layer: 0
+  m_Name: UnitTrajectorieMarker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &456024
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 198364}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 18.6831379, y: 15.7078733, z: 9.96829605}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 458642}
+  m_RootOrder: 0
 --- !u!4 &458642
 Transform:
   m_ObjectHideFlags: 1
@@ -32,9 +61,10 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 154648}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 15.1427155, y: 2.34500003, z: 17.6908493}
   m_LocalScale: {x: .5, y: 1.69000006, z: .349999994}
-  m_Children: []
+  m_Children:
+  - {fileID: 456024}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!23 &2345254
@@ -113,6 +143,23 @@ MonoBehaviour:
   bezierTangentLength: .400000006
   offset: .200000003
   factor: .100000001
+--- !u!114 &11433504
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 198364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acf0c8094ba6445099b9f96e22e5e944, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  friendlyColor: {r: 0, g: 1, b: .0482759476, a: .533999979}
+  enemyColor: {r: 1, g: 0, b: 0, a: .522000015}
+  neutralColor: {r: 1, g: 1, b: 0, a: .541000009}
+  unit: {fileID: 0}
+  target: {x: 0, y: 0, z: 0}
+  targetUnit: {fileID: 0}
 --- !u!114 &11439110
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -156,6 +203,7 @@ MonoBehaviour:
   width: .0299999993
   offMaterial: {fileID: 2100000, guid: 4e668a987f64045c78b4856beaa21d6d, type: 2}
   onMaterial: {fileID: 2100000, guid: 9cfd233152494455eb3ff6a3e84aa79d, type: 2}
+  trajectory: {fileID: 182798, guid: e21e199d936e543dc9ba08d0668e84fe, type: 2}
 --- !u!114 &11473164
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -197,6 +245,43 @@ MonoBehaviour:
   firingRange: 10
   trajectorieMarker: {fileID: 182798, guid: e21e199d936e543dc9ba08d0668e84fe, type: 2}
   currentState: 0
+--- !u!120 &12074092
+LineRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 198364}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 637b540832e6b4bb49a716fb22feff31, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 1
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_ImportantGI: 0
+  m_AutoUVMaxDistance: .5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Positions:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 1}
+  m_Parameters:
+    startWidth: .200000003
+    endWidth: .200000003
+    m_StartColor:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_EndColor:
+      serializedVersion: 2
+      rgba: 4294967295
+  m_UseWorldSpace: 1
 --- !u!143 &14384924
 CharacterController:
   m_ObjectHideFlags: 1
@@ -371,6 +456,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: trajectorieMarker
+      value: 
+      objectReference: {fileID: 182798, guid: e21e199d936e543dc9ba08d0668e84fe, type: 2}
+    - target: {fileID: 0}
+      propertyPath: trajectory
       value: 
       objectReference: {fileID: 182798, guid: e21e199d936e543dc9ba08d0668e84fe, type: 2}
     m_RemovedComponents: []

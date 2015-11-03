@@ -30,6 +30,8 @@ class Wuidobrian extends MonoBehaviour {
 		pF = GetComponent.<BasicPathfindingAI>();
 		if (melee)
 			firingRange = 2f;
+			
+		GetComponent.<Selectable>().trajectory = transform.Find("UnitTrajectorieMarker").gameObject;
 	}
 	
 	function OnBulletHit() {

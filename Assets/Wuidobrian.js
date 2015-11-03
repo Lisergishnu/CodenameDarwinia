@@ -1,6 +1,13 @@
 ﻿#pragma strict
 
 @script RequireComponent(BasicPathfindingAI)
+@script RequireComponent(Selectable)
+
+enum WuidobrianState {
+	Idle,
+	Moving,
+	Attacking
+}
 
 class Wuidobrian extends MonoBehaviour {
 	var health : float = 100;
@@ -10,9 +17,14 @@ class Wuidobrian extends MonoBehaviour {
 	var melee : boolean = false;
 	
 	var currentTarget : GameObject;
+	var targetPosition : Vector3;
 	var pF : BasicPathfindingAI;
 	var firingCooldown : float = 1f;
 	var firingRange : float = 10f;
+	var trajectorieMarker : GameObject;
+	var currentState : WuidobrianState = WuidobrianState.Idle;
+	
+	private var currentMarker : GameObject;
 	
 	function Start() {
 		pF = GetComponent.<BasicPathfindingAI>();
@@ -51,11 +63,14 @@ class Wuidobrian extends MonoBehaviour {
 		StopCoroutine("UpdatePathingToEnemy");
 		StopCoroutine("UpdateFiringToEnemy");
 		LockTarget(null);
+		currentState = WuidobrianState.Idle;
 	}
 	
 	function IssueMoveOrderTo(point: Vector3) {
 		ClearOrders();
 		pF.IssueMovementToMapPoint(point);
+		targetPosition = point;
+		currentState = WuidobrianState.Moving;
 	}
 	
 	function IssueAttackOrderTo(enemy:GameObject) {
@@ -63,6 +78,7 @@ class Wuidobrian extends MonoBehaviour {
 		LockTarget(enemy);
 		UpdatePathingToEnemy();
 		UpdateFiringToEnemy();		
+		currentState = WuidobrianState.Attacking;
 	}
 	
 	function UpdateFiringToEnemy() /* If any */ {

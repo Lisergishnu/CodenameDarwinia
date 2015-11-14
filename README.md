@@ -13,4 +13,4 @@ Project (Free Version)](http://arongranberg.com/astar/).
 Licence
 -------
 
-** For my own code **, GPL v2.0. 
+**For my own code**, GPL v2.0. 
